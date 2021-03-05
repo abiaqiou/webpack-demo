@@ -1,4 +1,5 @@
 const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 入口文件位置
@@ -25,7 +26,18 @@ module.exports = {
   },
 
   // 插件，执行范围更广的任务
-  plugins: [],
+  plugins: [
+    // 创建一个新的 html 文件，自动引入 bundle
+    new HtmlWebpackPlugin({
+      // 新的 html 文件会复制 template 中的内容
+      template: './src/index.html',
+      // filename: 'index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+  ],
 
   // 打包模式，开发与生产这两种模式都会自动启用一些插件
   mode: 'development',
