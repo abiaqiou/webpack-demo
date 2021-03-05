@@ -30,6 +30,11 @@ module.exports = {
         // css-loader 读取 css 文件内容到 js 中
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.less$/,
+        // less-loader 将 less 语句转译为 css 语句
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
     ],
   },
 
