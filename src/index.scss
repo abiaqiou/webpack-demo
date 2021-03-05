@@ -4,4 +4,5 @@ $length: 100px;
   width: $length * 2;
   height: $length * 2;
   background-color: blue;
+  backface-visibility: hidden;
 }

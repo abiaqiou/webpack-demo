@@ -29,17 +29,27 @@ module.exports = {
         test: /\.css$/,
         // style-loader 生成 js 代码, 运行后新增 style 标签
         // css-loader 读取 css 文件内容到 js 中
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
         // less-loader 将 less 语句转译为 css 语句
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.scss$/,
         // sass-loader 将 sass 语句转译为 css 语句
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+          'postcss-loader',
+        ],
       },
     ],
   },
