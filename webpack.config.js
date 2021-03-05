@@ -35,6 +35,11 @@ module.exports = {
         // less-loader 将 less 语句转译为 css 语句
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
+      {
+        test: /\.scss$/,
+        // sass-loader 将 sass 语句转译为 css 语句
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
 
