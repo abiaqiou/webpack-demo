@@ -3,16 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 入口文件位置
-  entry: './src/index.js',
+  // entry: './src/index.js',
 
   // 一个 chunk，一个 bundle
   // entry: ['./src/index.js', './src/main.js']
 
   // 多个 chunk，多个 bundle
-  // entry: {
-  //   bundle0: './src/index.js',
-  //   bundle1: './src/main.js',
-  // }
+  entry: {
+    vendor: ['./src/js/jquery.js', './src/js/common.js'],
+    bundle0: './src/js/multiple0.js',
+    bundle1: './src/js/multiple1.js',
+  },
 
   // 出口文件位置
   output: {
@@ -30,12 +31,25 @@ module.exports = {
     // 创建一个新的 html 文件，自动引入 bundle
     new HtmlWebpackPlugin({
       // 新的 html 文件会复制 template 中的内容
-      template: './src/index.html',
-      // filename: 'index.html',
+      template: './src/multiple0.html',
+      filename: 'm0.html',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
       },
+      // 引入部分 chunk，不指定的话会引入全部
+      chunks: ['bundle0', 'vendor'],
+    }),
+    new HtmlWebpackPlugin({
+      // 新的 html 文件会复制 template 中的内容
+      template: './src/multiple1.html',
+      filename: 'm1.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+      // 引入部分 chunk，不指定的话会引入全部
+      chunks: ['bundle1', 'vendor'],
     }),
   ],
 
