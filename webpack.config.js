@@ -1,6 +1,7 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   // 入口文件位置
@@ -73,6 +74,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'main.css',
     }),
+
+    // 默认去除空格和注释
+    new OptimizeCssAssetsWebpackPlugin(),
   ],
 
   // 打包模式，开发与生产这两种模式都会自动启用一些插件
