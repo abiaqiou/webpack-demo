@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   // 入口文件位置
@@ -28,17 +29,17 @@ module.exports = {
         test: /\.css$/,
         // style-loader 生成 js 代码, 运行后新增 style 标签
         // css-loader 读取 css 文件内容到 js 中
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.less$/,
         // less-loader 将 less 语句转译为 css 语句
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.scss$/,
         // sass-loader 将 sass 语句转译为 css 语句
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -56,6 +57,11 @@ module.exports = {
       },
       // 引入部分 chunk，不指定的话会引入全部
       // chunks: ['bundle0', 'vendor'],
+    }),
+
+    // 提取各个 style 标签里的 css 代码到一个文件中, 插入 link 标签到 html 文件中。 需配合自身 loader 方法使用
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
     }),
   ],
 
