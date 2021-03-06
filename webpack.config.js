@@ -113,4 +113,12 @@ module.exports = {
 
   // 打包模式，开发与生产这两种模式都会自动启用一些插件
   mode: 'development',
+
+  // webpack5 需要的配置项，用于自动刷新?
+  // target: 'web',
+  devServer: {
+    port: 2000,
+    compress: true,
+    open: true,
+  },
 }
