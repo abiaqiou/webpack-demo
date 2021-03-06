@@ -10,3 +10,8 @@
   height: 400px;
   background: url('./images/webpack.jpg');
 }
+
+#img-webpack {
+  width: 400px;
+  height: 400px;
+}
