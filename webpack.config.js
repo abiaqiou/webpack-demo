@@ -52,6 +52,18 @@ module.exports = {
           'postcss-loader',
         ],
       },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        // 处理在 css 中引入图片的 loader
+        loader: 'url-loader',
+        options: {
+          // 小于该值时会执行 base64 编码
+          limit: 1024 * 10,
+          // 相对于打包目录的路径
+          outputPath: './images',
+          name: '[name][hash:10].[ext]',
+        },
+      },
     ],
   },
 
