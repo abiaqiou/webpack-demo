@@ -71,6 +71,15 @@ module.exports = {
         // 处理 html 中引入的图片
         loader: 'html-loader',
       },
+      {
+        exclude: /\.(js|json|html|css|less|scss|jpg|jpeg|png|gif)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'font',
+          publicPath: './font',
+          name: '[name][hash:4].[ext]',
+        },
+      },
     ],
   },
 

@@ -1,0 +1,23 @@
+{
+  "id": "2403709",
+  "name": "webpack-demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13304131",
+      "name": "webpack",
+      "font_class": "webpack",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "13595828",
+      "name": "nodejs Node.js 性能平台",
+      "font_class": "nodejsNodejsxingnengpingtai",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    }
+  ]
+}
