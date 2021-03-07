@@ -1,9 +1,14 @@
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
+
+const PurgecssWebpackPlugin = require('purgecss-webpack-plugin')
+const glob = require('glob')
+
+const PATHS = { src: join(__dirname, 'src') }
 
 module.exports = {
   // 入口文件位置
@@ -70,7 +75,7 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
+        test: /\.html$/i,
         // 处理 html 中引入的图片
         loader: 'html-loader',
       },
@@ -103,7 +108,7 @@ module.exports = {
 
     // 提取各个 style 标签里的 css 代码到一个文件中, 插入 link 标签到 html 文件中。 需配合自身 loader 方法使用
     new MiniCssExtractPlugin({
-      filename: 'main.css',
+      filename: '[name].css',
     }),
 
     // 默认去除空格和注释
@@ -111,10 +116,15 @@ module.exports = {
     new CssMinimizerWebpackPlugin(),
 
     new EslintWebpackPlugin(),
+
+    // css tree-shaking
+    new PurgecssWebpackPlugin({
+      paths: glob.sync(`${PATHS}/**/*`, { nodir: true }),
+    }),
   ],
 
   // 打包模式，开发与生产这两种模式都会自动启用一些插件
-  mode: 'development',
+  // mode: 'development',
 
   // webpack5 需要的配置项，用于自动刷新?
   // target: 'web',
