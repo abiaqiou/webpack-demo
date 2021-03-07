@@ -8,6 +8,8 @@ const EslintWebpackPlugin = require('eslint-webpack-plugin')
 module.exports = {
   // 入口文件位置
   entry: './src/index.js',
+  // 用于热替换 html
+  // entry: ['./src/index.js', './src/index.html']
 
   // 一个 chunk，一个 bundle
   // entry: ['./src/index.js', './src/main.js']
@@ -30,7 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // style-loader 生成 js 代码, 运行后新增 style 标签
+        // style-loader 生成 js 代码, 运行后新增 style 标签. 也用于 css 热替换
         // css-loader 读取 css 文件内容到 js 中
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
@@ -120,5 +122,7 @@ module.exports = {
     port: 2000,
     compress: true,
     open: true,
+    // 模块热替换
+    hot: true,
   },
 }
